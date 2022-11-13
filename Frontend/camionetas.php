@@ -8,6 +8,8 @@
     <link rel="stylesheet" href="bootstrap/css/bootstrap.min.css">
     <!-- Datatable -->
     <link rel="stylesheet" href="css/datatable/jquery.dataTables.min.css">
+    <!-- icono -->
+    <link href="img/dios-padre.webp" rel="icon">
     <title>Document</title>
 </head>
 <body>
@@ -21,7 +23,7 @@
       <div class="col-sm-1"></div>
       <div class="col mt-5 plus">
         <div class="float-right mt-5"><br>
-          <button class="btn btn-primary"><i class="fa-solid fa-plus"></i>&nbsp;&nbsp;Nuevo</button>
+          <a class="btn btn-primary" href="cmt_insert.php"><i class="fa-solid fa-plus"></i>&nbsp;&nbsp;Nuevo</a>
         </div>
       </div>
       <div class="col-sm-1"></div>
@@ -30,7 +32,7 @@
       <div class="col-sm-1"></div>
       <div class="col">
         <div class="mb-5">
-          <h3>Gasolina y diésel</h3>
+          <h3>Camionetas</h3>
         </div>
         <table id="example" class="table table-bordered" style="width:100%">
           <thead class="thead-dark">
@@ -74,7 +76,9 @@
 </body>
 <!-- Fontawesome -->
 <script src="https://kit.fontawesome.com/b0b8de238a.js" crossorigin="anonymous"></script>
+<!-- Jquery -->
 <script src="https://code.jquery.com/jquery-3.5.1.js"></script>
+<!-- Datatables -->
 <script src="https://cdn.datatables.net/1.13.1/js/jquery.dataTables.min.js"></script>
 <script>
   $(document).ready(function () {

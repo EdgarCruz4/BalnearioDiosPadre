@@ -7,7 +7,7 @@
 	list-style: none;
 }
 :root{
-	--bg-color: #e8edff;
+	--bg-color: #f4f6ff;
 	--main-color: #29d3fd;
 }
 body{
@@ -89,7 +89,9 @@ body{
 	z-index: 10001;
 	display: none;
 }
-
+main .content_form{
+	margin-top: 180px;
+}
 
 @media (max-width: 1280px){
 	header{
@@ -99,19 +101,21 @@ body{
 	.navbar a{
 		padding: 5px 0;
 		margin: 0px 20px;
+		font-size: 0.7em;
 	}
 }
 
 @media (max-width: 1090px){
 	#menu-icon{
 		display: block;
+		color: #fff;
 	}
 	.navbar{
 		position: absolute;
 		top: 100%;
 		right: -100%;
 		width: 270px;
-		height: 29vh;
+		height: 38vh;
 		background: var(--main-color);
 		display: flex;
 		flex-direction: column;
