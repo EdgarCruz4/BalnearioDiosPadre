@@ -3,7 +3,7 @@
 <head>
 	<meta charset="utf-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
-	<title>Responsive navbar using only html css</title>
+	<title>Menu</title>
 	<!-- CSS Personalisado -->
 	<link rel="stylesheet" type="text/css" href="css/style.css">
 	<link rel="stylesheet" href="css/table.css">
@@ -27,10 +27,10 @@
 		</div>
 
 		<ul class="navbar">
-			<li><a style="text-decoration:none" href="#" class="active">Herramientas</a></li>
-			<li><a style="text-decoration:none" href="#">Material</a></li>
-			<li><a style="text-decoration:none" href="#">Balneario Dios Padre</a></li>
-			<li><a style="text-decoration:none" href="mtrSalida.php">Material de salida</a></li>
+			<!-- <li><a style="text-decoration:none" href="#" class="active">Herramientas</a></li> -->
+			<li><a style="text-decoration:none" href="cooperativa.php">Cooperativa</a></li>
+			<li><a style="text-decoration:none" href="BDP.php">Balneario Dios Padre</a></li>
+			<li><a style="text-decoration:none" href="prst_hrram.php">Control de herramientas</a></li>
 			<li><a style="text-decoration:none" href="combustible.php">Combustibles</a></li>
 			<li><a style="text-decoration:none" href="camionetas.php">Camionetas</a></li>
 		</ul>

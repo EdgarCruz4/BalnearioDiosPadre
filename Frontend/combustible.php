@@ -10,12 +10,14 @@
     <link rel="stylesheet" href="css/datatable/jquery.dataTables.min.css">
     <!-- icono -->
     <link href="img/dios-padre.webp" rel="icon">
-    <title>Document</title>
+    <title>Combustibles</title>
 </head>
 <body>
   <div id="sidebar">
     <?php
       include_once 'menu.php';
+      $today = date('Y-m-d');
+      $time = date('h:i:s');
     ?>
   </div>
   <div class="col">
@@ -23,7 +25,75 @@
       <div class="col-sm-1"></div>
       <div class="col mt-5 plus">
         <div class="float-right mt-5"><br>
-          <a class="btn btn-primary" href="#"><i class="fa-solid fa-plus"></i>&nbsp;&nbsp;Nuevo</a>
+            <!-- Button trigger modal -->
+            <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal">
+                <i class="fa-solid fa-plus"></i>&nbsp;&nbsp;Nuevo
+            </button>
+
+            <!-- Modal -->
+            <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+            <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabel">Agregar registro</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    
+                    <form method="POST" enctype="multipart/form-data" action="../Backend/act_mst_insert.php">
+                        <div class="form-group">
+                            <div class="row">
+                                <div class="col mt-4">
+                                    <label>Fecha</label>
+                                    <input type="date" name="" class="form-control" value="<?php echo $today;?>" required>
+                                </div>
+                            </div>
+                            
+                            <div class="row mt-4">
+                                <div class="col-7">
+                                    <label>Combustible</label>
+                                    <Select class="custom-select" required>
+                                        <option select hidden>Selecciona el combustible</option>
+                                        <option value="gasolina">Gasolina</option>
+                                        <option value="diésel">Diésel</option>
+                                    </Select>
+                                </div>
+
+                                <div class="col">
+                                    <label>Cantidad requerida</label>
+                                    <div class="input-group-prepend">
+                                        <input type="number" class="form-control" name="" required>
+                                        <span class="input-group-text">Lt</span>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="form-row">
+                                <div class="col mt-4">
+                                    <label>Nombre del solicitante</label>
+                                    <input type="text" name="" class="form-control" placeholder="Nombre del trabajador" maxlength="60" required>
+                                </div>
+                            </div>
+
+                            <div class="form-row">
+                                <div class="col mt-4">
+                                    <label>Uso</label>
+                                    <input type="text" name="" class="form-control" placeholder="Uso que se le dara al combustible" maxlength="60" required>
+                                </div>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-danger" data-dismiss="modal">Cerra</button>
+                    <button type="button" class="btn btn-primary">Guardar</button>
+                </div>
+                </div>
+            </div>
+            </div>
+            <!-- exit modal -->
         </div>
       </div>
       <div class="col-sm-1"></div>
@@ -32,42 +102,39 @@
       <div class="col-sm-1"></div>
       <div class="col">
         <div class="mb-5">
-          <h3>Gasolina y diésel</h3>
+          <h3>Combustibles</h3>
         </div>
         <table id="example" class="table table-bordered" style="width:100%">
           <thead class="thead-dark">
               <tr>
-                  <th>Name</th>
-                  <th>Position</th>
-                  <th>Office</th>
-                  <th>Age</th>
-                  <th>Start date</th>
+                  <th>Fecha</th>
+                  <th>Combustible</th>
+                  <th>Trabajador</th>
+                  <th>Uso</th>
               </tr>
           </thead>
-          <tbody>
-              <tr>
-                  <td>Tiger Nixon</td>
-                  <td>System Architect</td>
-                  <td>Edinburgh</td>
-                  <td>61</td>
-                  <td>2011-04-25</td>
-              </tr>
-              <tr>
-                  <td>Garrett Winters</td>
-                  <td>Accountant</td>
-                  <td>Tokyo</td>
-                  <td>63</td>
-                  <td>2011-07-25</td>
-              </tr>
-          <tfoot>
+            <tbody>
+                <tr>
+                    <td>Tiger Nixon</td>
+                    <td>System Architect</td>
+                    <td>Edinburgh</td>
+                    <td>61</td>
+                </tr>
+                <tr>
+                    <td>Garrett Winters</td>
+                    <td>Accountant</td>
+                    <td>Tokyo</td>
+                    <td>63</td>
+                </tr>
+            </tbody>
+          <!-- <tfoot>
               <tr>
                   <th>Name</th>
                   <th>Position</th>
                   <th>Office</th>
                   <th>Age</th>
-                  <th>Start date</th>
               </tr>
-          </tfoot>
+          </tfoot> -->
       </table>
       </div>
       <div class="col-sm-1"></div>

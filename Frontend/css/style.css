@@ -115,7 +115,7 @@ main .content_form{
 		top: 100%;
 		right: -100%;
 		width: 270px;
-		height: 38vh;
+		height: 32vh;
 		background: var(--main-color);
 		display: flex;
 		flex-direction: column;
@@ -128,9 +128,10 @@ main .content_form{
 		margin: 12px 0;
 		padding: 0px 25px;
 		transition: all .50s ease;
+		font-size: 0.9rem;
 	}
 	.navbar a:hover{
-		color: var(--text-color);
+		color: #222327;
 		transform: translateY(5px);
 	}
 	.navbar a.active{
