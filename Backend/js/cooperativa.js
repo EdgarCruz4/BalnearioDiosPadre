@@ -1,7 +1,6 @@
 let trCont = document.getElementById("trbody");
 
 $(document).ready(function () {
-    mostrarTodo();
     mostrarPrestamos();
 });
 
