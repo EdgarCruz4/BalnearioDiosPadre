@@ -1,3 +1,10 @@
+<?php
+	require '../Backend/script/consultas.php';
+    $consulta = new consultas();
+
+	$name = $consulta->session_star_menu();
+    $route = '../';
+?>
 <!DOCTYPE html>
 <html>
 <head>
@@ -27,7 +34,6 @@
 		</div>
 
 		<ul class="navbar">
-			<!-- <li><a style="text-decoration:none" href="#" class="active">Herramientas</a></li> -->
 			<li><a style="text-decoration:none" href="cooperativa.php">Cooperativa</a></li>
 			<li><a style="text-decoration:none" href="BDP.php">Balneario Dios Padre</a></li>
 			<li><a style="text-decoration:none" href="prst_hrram.php">Control de herramientas</a></li>

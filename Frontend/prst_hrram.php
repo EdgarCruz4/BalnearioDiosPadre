@@ -40,51 +40,52 @@
                     <span aria-hidden="true">&times;</span>
                     </button>
                 </div>
+                <form method="POST" enctype="multipart/form-data" action="../Backend/prst_hrram_insert.php">
                 <div class="modal-body">
                     
-                    <form method="POST" enctype="multipart/form-data" action="../Backend/act_mst_insert.php">
-                        <div class="form-group">
-                            <div class="row">
-                                <div class="col mt-4">
-                                    <label>Fecha</label>
-                                    <input type="date" name="" class="form-control" value="<?php echo $today;?>" required>
-                                </div>
-                            </div>
-
-                            <div class="form-row">
-                                <div class="col mt-4">
-                                    <label>Material/Observación</label>
-                                    <textarea class="form-control" name="" rows="3" placeholder="Material prestado" maxlength="500"></textarea>
-                                </div>
-                            </div>
-
-                            <div class="form-row">
-                                <div class="col mt-4">
-                                    <label>Nombre del solicitante</label>
-                                    <input type="text" name="" class="form-control" placeholder="Nombre del solicitante" required>
-                                </div>
-                            </div>
-
-                            <div class="form-row">
-                                <div class="col mt-4">
-                                    <label>Entrega</label>
-                                    <input type="text" name="" class="form-control" placeholder="Nombre del quien entrega" required>
-                                </div>
-                            </div>
-
-                            <div class="form-row">
-                                <div class="col mt-4">
-                                    <label>Área</label>
-                                    <input type="text" name="" class="form-control" placeholder="Área de uso" maxlength="60" required>
-                                </div>
+                    <div class="form-group">
+                        <div class="row">
+                            <div class="col">
+                                <label>Fecha</label>
+                                <input type="date" name="fecha" class="form-control" value="<?php echo $today;?>" readonly required>
                             </div>
                         </div>
-                    </form>
+
+                        <div class="form-row">
+                            <div class="col mt-4">
+                                <label>Material/Observación</label>
+                                <textarea class="form-control" name="material" rows="3" placeholder="Material prestado" maxlength="500"></textarea>
+                            </div>
+                        </div>
+
+                        <div class="form-row">
+                            <div class="col mt-4">
+                                <label>Nombre del solicitante</label>
+                                <input type="text" name="nombre" class="form-control" placeholder="Nombre del solicitante" required>
+                            </div>
+                        </div>
+
+                        <div class="form-row">
+                            <div class="col mt-4">
+                                <label>Entrega</label>
+                                <input type="text" name="" class="form-control" value="<?php echo $name;?>" placeholder="Nombre del quien entrega" readonly required>
+                                <input type="hidden" name="entrega" class="form-control" value="1" readonly>
+                            </div>
+                        </div>
+
+                        <div class="form-row">
+                            <div class="col mt-4">
+                                <label>Área</label>
+                                <input type="text" name="area" class="form-control" placeholder="Área de uso" maxlength="60" required>
+                            </div>
+                        </div>
+                    </div>
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-danger" data-dismiss="modal">Cerra</button>
-                    <button type="button" class="btn btn-primary">Guardar</button>
+                    <button type="submit" class="btn btn-primary">Guardar</button>
                 </div>
+                </form>
                 </div>
             </div>
             </div>
@@ -107,25 +108,42 @@
                     <th>Material/Observación</th>
                     <th>Solicitante</th>
                     <th>Entrega</th>
-                    <th>Turno de entrega</th>
+                    <th>Recibe</th>
                     <th>Área</th>
                 </tr>
             </thead>
+            <?php
+            $result_consulta = $consulta->get_prestamos_renta($route);
+            while($prestamo = $result_consulta->fetch_assoc())
+            {
+            ?>
             <tbody>
                   <tr>
-                      <td>Tiger Nixon</td>
-                      <td>System Architect</td>
-                      <td>Edinburgh</td>
-                      <td>61</td>
+                      <td><?php echo $prestamo['fecha'];?></td>
+                      <td><?php echo $prestamo['material-obserbaciones'];?></td>
+                      <td><?php echo $prestamo['solicitante'];?></td>
+                      <td><?php echo $prestamo['id_almacenista_entrega'];?></td>
                       <td>
-                        <form method="POST" action="">
-                            <input type="hidden" value="">
-                            <div align="center"><button class="btn btn-success">Recibido</button></div>
-                        </form>
+                        <?php
+                          if($prestamo['id_almacenista_recibe'] == 1){
+                            echo $prestamo['id_almacenista_entrega'];
+                          }
+                          else{
+                          ?>
+                            <form method="POST" action="../Backend/prst_hrram_recibido.php">
+                              <input type="hidden" name="id" value="<?php echo $prestamo['id'];?>">
+                              <div align="center"><button class="btn btn-success">Recibido</button></div>
+                            </form>
+                          <?php
+                          }
+                        ?>
                       </td>
-                      <td></td>
+                      <td><?php echo $prestamo['area'];?></td>
                   </tr>
             </tbody>
+            <?php
+            }
+            ?>
       </table>
       </div>
       <div class="col-sm-1"></div>
