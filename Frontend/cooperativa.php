@@ -1,7 +1,6 @@
 <?php 
 
 session_start();
-$_SESSION['id_almacenista'] = "1";
 if ($_SESSION['id_almacenista'] == null) {
   header('Location: login.php');
 }else{

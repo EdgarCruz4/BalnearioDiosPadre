@@ -1,3 +1,14 @@
+<?php 
+
+session_start();
+if ($_SESSION['id_almacenista'] == null) {
+  header('Location: login.php');
+}else{
+  echo `<script>mostrarRegistros();</script>`;
+}
+
+
+?>
 <!DOCTYPE html>
 <html lang="en">
 <head>

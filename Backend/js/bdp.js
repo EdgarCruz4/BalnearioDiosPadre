@@ -1,21 +1,21 @@
 let trCont = document.getElementById("trbody");
 
 $(document).ready(function () {
-    selectCombustible();
+    selectPrestamo();
 });
 
-function saveConbustible() {
+function savePrestamo() {
     let values = {
-        gasolina_cargada:document.querySelector("#valCa").value+" litros de "+document.querySelector("#valCo").value,
-        conductor:document.querySelector("#valSo").value,
-        actividad:document.querySelector("#valUs").value
+        material:document.querySelector("#valMat").value,
+        solicitante:document.querySelector("#valSol").value,
+        area:document.querySelector("#valAre").value
     };
-    $.post('../Backend/php/addConbustible.php',values,function(respuesta){
+    $.post('../Backend/php/addBDP.php',values,function(respuesta){
         if (respuesta!=null) {
             var data = JSON.parse(respuesta);
             if (data.response == "SUCCESS") {
                 trCont.innerHTML = "";
-                selectCombustible();
+                selectPrestamo();
                 alert("Registrado correctamente");
                 document.getElementById('formDatos').reset();
             } else {
@@ -29,8 +29,8 @@ function saveConbustible() {
     });
 }
 
-function selectCombustible() {
-    $.post('../Backend/php/selectCombustible.php',{dato:"relleno"},function(respuesta){
+function selectPrestamo() {
+    $.post('../Backend/php/selectBDP.php',{I:"I"},function(respuesta){
         if (respuesta!=null) {
             var data = JSON.parse(respuesta);
             if (data.response == "SUCCESS") {
@@ -39,9 +39,9 @@ function selectCombustible() {
                     trCont.innerHTML += `
                     <tr>
                         <td>${row1.fecha}</td>
-                        <td>${row1.combustible}</td>
+                        <td>${row1.material}</td>
                         <td>${row1.solicitante}</td>
-                        <td>${row1.concepto}</td>
+                        <td>${row1.area}</td>
                     </tr>
                     `;
                 });

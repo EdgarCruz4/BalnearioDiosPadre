@@ -15,7 +15,7 @@ function saveNew() {
             if (data.response == "SUCCESS") {
                 trCont.innerHTML = "";
                 mostrarPrestamos();
-                alert("Prestamo registrado");
+                alert("Registrado correctamente");
                 document.getElementById('formDatos').reset();
             } else {
                 alert('Ha ocurrido un error, intetelo mas tarde');

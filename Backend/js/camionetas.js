@@ -49,7 +49,7 @@ function saveConbustible(val2) {
             if (data2.response == "SUCCESS") {
                 trCont.innerHTML = "";
                 mostrarRegistros();
-                alert("Prestamo registrado");
+                alert("Registrado correctamente");
                 document.getElementById('formDatos').reset();
             } else {
                 alert('Ha ocurrido un error, intetelo mas tarde');
