@@ -3,18 +3,6 @@ let trCont = document.getElementById("trbody");
 $(document).ready(function () {
     mostrarPrestamos();
 });
-
-function mostrarTodo() {
-    $('.eventPendientes').show();
-    $('.eventTodo').hide();
-    
-}
-
-function mostrarPendientes() {
-    $('.eventTodo').show();
-    $('.eventPendientes').hide();
-}
-
 function saveNew() {
     let values = {
         concepto:document.querySelector('#valMaterial').value,
@@ -47,30 +35,16 @@ function mostrarPrestamos() {
             if (data.response == "SUCCESS") {
                 let detail = data.detail;
                 detail.forEach(row1 => {
-                    if (row1.estatus == 1) {
-                        trCont.innerHTML += `
-                        <tr id="eventPendientes">
-                            <td>${row1.fecha}</td>
-                            <td>${row1.concepto}</td>
-                            <td>${row1.solicitante}</td>
-                            <td>${row1.area}</td>
-                            <td><button onclick="updateEstatus(${row1.id});">Entregar</button></td>
-                        </tr>
-                        `;
-                    } else {
-                        trCont.innerHTML += `
-                        <tr class="eventTodo">
-                            <td>${row1.fecha}</td>
-                            <td>${row1.concepto}</td>
-                            <td>${row1.solicitante}</td>
-                            <td>${row1.area}</td>
-                            <td>Entregado</td>
-                        </tr>
-                        `;
-                    }
+                    trCont.innerHTML += `
+                    <tr class="null">
+                        <td>${row1.fecha}</td>
+                        <td>${row1.concepto}</td>
+                        <td>${row1.solicitante}</td>
+                        <td>${row1.area}</td>
+                    </tr>
+                    `;
                 });
                 $('#example').DataTable();
-                mostrarTodo();
             } else {
                 alert('Ha ocurrido un error, intetelo mas tarde');
                 window.location= '';

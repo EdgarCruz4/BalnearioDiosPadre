@@ -106,8 +106,6 @@ if ($_SESSION['id_almacenista'] == null) {
         <div class="mb-5">
           <h3>Cooperativa</h3>
         </div>
-        <button class="eventTodo" onclick="mostrarTodo();">Pendientes</button>
-        <button class="eventPendientes" onclick="mostrarPendientes();">Ver todo</button>
         <table id="example" class="table table-bordered" style="width:100%">
           <thead class="thead-dark">
               <tr>
@@ -115,7 +113,6 @@ if ($_SESSION['id_almacenista'] == null) {
                   <th>Material</th>
                   <th>Nombre del solicitante</th>
                   <th>Área</th>
-                  <th>Estatus</th>
               </tr>
           </thead>
             <tbody id="trbody">
