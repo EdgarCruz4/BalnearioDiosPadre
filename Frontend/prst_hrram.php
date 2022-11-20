@@ -24,11 +24,13 @@
     <div class="row">
       <div class="col-sm-1"></div>
       <div class="col mt-5 plus">
-        <div class="float-right mt-5"><br>
+        <div class="mt-5"><br>
             <!-- Button trigger modal -->
-            <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal">
-                <i class="fa-solid fa-plus"></i>&nbsp;&nbsp;Nuevo
-            </button>
+            <div class="float-right">
+                <button class="btn btn-primary" data-toggle="modal" data-target="#exampleModal">
+                    <i class="fa-solid fa-plus"></i>&nbsp;&nbsp;Nuevo
+                </button>
+            </div>
 
             <!-- Modal -->
             <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
@@ -68,8 +70,7 @@
                         <div class="form-row">
                             <div class="col mt-4">
                                 <label>Entrega</label>
-                                <input type="text" name="" class="form-control" value="<?php echo $name;?>" placeholder="Nombre del quien entrega" readonly required>
-                                <input type="hidden" name="entrega" class="form-control" value="1" readonly>
+                                <input type="text" name="entrega" class="form-control" value="<?php echo $name;?>" placeholder="Nombre del quien entrega" readonly required>
                             </div>
                         </div>
 
@@ -105,45 +106,57 @@
             <thead class="thead-dark">
                 <tr>
                     <th>Fecha</th>
-                    <th>Material/Observación</th>
+                    <th>Material</th>
                     <th>Solicitante</th>
                     <th>Entrega</th>
-                    <th>Recibe</th>
                     <th>Área</th>
+                    <th>Recibe</th>
+                    <th>Estatus</th>
                 </tr>
             </thead>
-            <?php
-            $result_consulta = $consulta->get_prestamos_renta($route);
-            while($prestamo = $result_consulta->fetch_assoc())
-            {
-            ?>
             <tbody>
+            <?php
+              $result_consulta = $consulta->get_prestamos_renta($route);
+              while($prestamo = $result_consulta->fetch_assoc())
+              {
+              ?>
                   <tr>
                       <td><?php echo $prestamo['fecha'];?></td>
                       <td><?php echo $prestamo['material-obserbaciones'];?></td>
                       <td><?php echo $prestamo['solicitante'];?></td>
-                      <td><?php echo $prestamo['id_almacenista_entrega'];?></td>
+                      <td><?php echo $prestamo['almacenista_entrega'];?></td>
+                      <td><?php echo $prestamo['area'];?></td>
                       <td>
                         <?php
-                          if($prestamo['id_almacenista_recibe'] == 1){
-                            echo $prestamo['id_almacenista_entrega'];
+                          if(empty($prestamo['almacenista_recibe'])){
+                            echo 'En prestamo';
                           }
                           else{
-                          ?>
-                            <form method="POST" action="../Backend/prst_hrram_recibido.php">
-                              <input type="hidden" name="id" value="<?php echo $prestamo['id'];?>">
-                              <div align="center"><button class="btn btn-success">Recibido</button></div>
-                            </form>
-                          <?php
+                            echo $prestamo['almacenista_recibe'];
                           }
                         ?>
                       </td>
-                      <td><?php echo $prestamo['area'];?></td>
+                      <td>
+                        <?php
+                          if($prestamo['id_estatus'] == 1)
+                          {
+                        ?>
+                          <form method="POST" action="../Backend/prst_hrram_recibido.php">
+                            <input type="hidden" name="id" value="<?php echo $prestamo['id'];?>">
+                            <div align="center"><button class="btn btn-success">Recibir</button></div>
+                          </form>
+                        <?php
+                          }
+                          else{
+                            echo 'Entregado';
+                          }
+                        ?>
+                      </td>
                   </tr>
+              <?php
+              }
+              ?>
             </tbody>
-            <?php
-            }
-            ?>
       </table>
       </div>
       <div class="col-sm-1"></div>
@@ -162,6 +175,5 @@
   });
 </script>
 </html>
-
 
 

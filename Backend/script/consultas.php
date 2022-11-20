@@ -4,7 +4,9 @@
         public function get_prestamos_renta($route)
         {
             require $route.'Backend/conexion.php';
-            $query = "SELECT * FROM prestamos_rentas;";
+            $today = date('Y-m-d');
+            $days_ago = date("Y-m-d", strtotime($today."- 30 days"));
+            $query = "SELECT * FROM prestamos_rentas WHERE fecha BETWEEN '$days_ago' AND '$today';";
             $result = $conexion->query($query);
             return $result;
         }
