@@ -24,11 +24,13 @@
     <div class="row">
       <div class="col-sm-1"></div>
       <div class="col mt-5 plus">
-        <div class="float-right mt-5"><br>
+        <div class="mt-5"><br>
             <!-- Button trigger modal -->
-            <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal">
-                <i class="fa-solid fa-plus"></i>&nbsp;&nbsp;Nuevo
-            </button>
+            <div class="float-right">
+                <button class="btn btn-primary" data-toggle="modal" data-target="#exampleModal">
+                    <i class="fa-solid fa-plus"></i>&nbsp;&nbsp;Nuevo
+                </button>
+            </div>
 
             <!-- Modal -->
             <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
@@ -40,51 +42,51 @@
                     <span aria-hidden="true">&times;</span>
                     </button>
                 </div>
+                <form method="POST" enctype="multipart/form-data" action="../Backend/prst_hrram_insert.php">
                 <div class="modal-body">
                     
-                    <form method="POST" enctype="multipart/form-data" action="../Backend/act_mst_insert.php">
-                        <div class="form-group">
-                            <div class="row">
-                                <div class="col mt-4">
-                                    <label>Fecha</label>
-                                    <input type="date" name="" class="form-control" value="<?php echo $today;?>" required>
-                                </div>
-                            </div>
-
-                            <div class="form-row">
-                                <div class="col mt-4">
-                                    <label>Material/Observación</label>
-                                    <textarea class="form-control" name="" rows="3" placeholder="Material prestado" maxlength="500"></textarea>
-                                </div>
-                            </div>
-
-                            <div class="form-row">
-                                <div class="col mt-4">
-                                    <label>Nombre del solicitante</label>
-                                    <input type="text" name="" class="form-control" placeholder="Nombre del solicitante" required>
-                                </div>
-                            </div>
-
-                            <div class="form-row">
-                                <div class="col mt-4">
-                                    <label>Entrega</label>
-                                    <input type="text" name="" class="form-control" placeholder="Nombre del quien entrega" required>
-                                </div>
-                            </div>
-
-                            <div class="form-row">
-                                <div class="col mt-4">
-                                    <label>Área</label>
-                                    <input type="text" name="" class="form-control" placeholder="Área de uso" maxlength="60" required>
-                                </div>
+                    <div class="form-group">
+                        <div class="row">
+                            <div class="col">
+                                <label>Fecha</label>
+                                <input type="date" name="fecha" class="form-control" value="<?php echo $today;?>" readonly required>
                             </div>
                         </div>
-                    </form>
+
+                        <div class="form-row">
+                            <div class="col mt-4">
+                                <label>Material/Observación</label>
+                                <textarea class="form-control" name="material" rows="3" placeholder="Material prestado" maxlength="500"></textarea>
+                            </div>
+                        </div>
+
+                        <div class="form-row">
+                            <div class="col mt-4">
+                                <label>Nombre del solicitante</label>
+                                <input type="text" name="nombre" class="form-control" placeholder="Nombre del solicitante" required>
+                            </div>
+                        </div>
+
+                        <div class="form-row">
+                            <div class="col mt-4">
+                                <label>Entrega</label>
+                                <input type="text" name="entrega" class="form-control" value="<?php echo $name;?>" placeholder="Nombre del quien entrega" readonly required>
+                            </div>
+                        </div>
+
+                        <div class="form-row">
+                            <div class="col mt-4">
+                                <label>Área</label>
+                                <input type="text" name="area" class="form-control" placeholder="Área de uso" maxlength="60" required>
+                            </div>
+                        </div>
+                    </div>
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-danger" data-dismiss="modal">Cerra</button>
-                    <button type="button" class="btn btn-primary">Guardar</button>
+                    <button type="submit" class="btn btn-primary">Guardar</button>
                 </div>
+                </form>
                 </div>
             </div>
             </div>
@@ -104,27 +106,56 @@
             <thead class="thead-dark">
                 <tr>
                     <th>Fecha</th>
-                    <th>Material/Observación</th>
+                    <th>Material</th>
                     <th>Solicitante</th>
                     <th>Entrega</th>
-                    <th>Turno de entrega</th>
                     <th>Área</th>
+                    <th>Recibe</th>
+                    <th>Estatus</th>
                 </tr>
             </thead>
             <tbody>
+            <?php
+              $result_consulta = $consulta->get_prestamos_renta($route);
+              while($prestamo = $result_consulta->fetch_assoc())
+              {
+              ?>
                   <tr>
-                      <td>Tiger Nixon</td>
-                      <td>System Architect</td>
-                      <td>Edinburgh</td>
-                      <td>61</td>
+                      <td><?php echo $prestamo['fecha'];?></td>
+                      <td><?php echo $prestamo['material-obserbaciones'];?></td>
+                      <td><?php echo $prestamo['solicitante'];?></td>
+                      <td><?php echo $prestamo['almacenista_entrega'];?></td>
+                      <td><?php echo $prestamo['area'];?></td>
                       <td>
-                        <form method="POST" action="">
-                            <input type="hidden" value="">
-                            <div align="center"><button class="btn btn-success">Recibido</button></div>
-                        </form>
+                        <?php
+                          if(empty($prestamo['almacenista_recibe'])){
+                            echo 'En prestamo';
+                          }
+                          else{
+                            echo $prestamo['almacenista_recibe'];
+                          }
+                        ?>
                       </td>
-                      <td></td>
+                      <td>
+                        <?php
+                          if($prestamo['id_estatus'] == 1)
+                          {
+                        ?>
+                          <form method="POST" action="../Backend/prst_hrram_recibido.php">
+                            <input type="hidden" name="id" value="<?php echo $prestamo['id'];?>">
+                            <div align="center"><button class="btn btn-success">Recibir</button></div>
+                          </form>
+                        <?php
+                          }
+                          else{
+                            echo 'Entregado';
+                          }
+                        ?>
+                      </td>
                   </tr>
+              <?php
+              }
+              ?>
             </tbody>
       </table>
       </div>
@@ -144,6 +175,5 @@
   });
 </script>
 </html>
-
 
 
