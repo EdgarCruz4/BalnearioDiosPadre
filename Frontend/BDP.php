@@ -1,13 +1,14 @@
 <?php 
-    //Bro si quieres usar las variables de sesion, las puedes llamar de la siguiente forma
-    // $_SESSION['name']
-    // $_SESSION['name_id']
-    session_start();
-    if ($_SESSION['id_almacenista'] == null) {
-    header('Location: login.php');
-    }else{
-    echo `<script>selectCombustible();</script>`;
-    }
+  //Bro si quieres usar las variables de sesion, las puedes llamar de la siguiente forma
+  // $_SESSION['name']
+  // $_SESSION['name_id']
+
+session_start();
+if ($_SESSION['id_almacenista'] == null) {
+  header('Location: login.php');
+}else{
+  echo `<script>selectPrestamo();</script>`;
+}
 
 
 ?>
@@ -23,7 +24,7 @@
     <link rel="stylesheet" href="css/datatable/jquery.dataTables.min.css">
     <!-- icono -->
     <link href="img/dios-padre.webp" rel="icon">
-    <title>Combustibles</title>
+    <title>Balneario Dios Padre</title>
 </head>
 <body>
   <div id="sidebar">
@@ -55,8 +56,15 @@
                 </div>
                 <div class="modal-body">
                     
-                    <form id="formDatos" method="POST" enctype="multipart/form-data" action="">
+                    <form id="formDatos" method="POST" enctype="multipart/form-data" action="../Backend/act_mst_insert.php">
                         <div class="form-group">
+                            <div class="row">
+                                <div class="col">
+                                    <label>Material</label>
+                                    <textarea id="valMat" class="form-control" name="" rows="3" placeholder="Material prestado" maxlength="500"></textarea>
+                                </div>
+                            </div>
+
                             <div class="row">
                                 <div class="col mt-4">
                                     <label>Fecha</label>
@@ -64,44 +72,26 @@
                                 </div>
                             </div>
                             
-                            <div class="row mt-4">
-                                <div class="col-7">
-                                    <label>Combustible</label>
-                                    <Select id="valCo" class="custom-select" required>
-                                        <option select hidden>Selecciona el combustible</option>
-                                        <option value="gasolina">Gasolina</option>
-                                        <option value="diésel">Diésel</option>
-                                    </Select>
-                                </div>
-
-                                <div class="col">
-                                    <label>Cantidad requerida</label>
-                                    <div class="input-group-prepend">
-                                        <input id="valCa" type="number" class="form-control" name="" required>
-                                        <span class="input-group-text">Lt</span>
-                                    </div>
-                                </div>
-                            </div>
-
                             <div class="form-row">
                                 <div class="col mt-4">
                                     <label>Nombre del solicitante</label>
-                                    <input id="valSo" type="text" name="" class="form-control" placeholder="Nombre del trabajador" maxlength="60" required>
+                                    <input id="valSol" type="text" name="" class="form-control" placeholder="Nombre" maxlength="60" required>
                                 </div>
                             </div>
 
                             <div class="form-row">
                                 <div class="col mt-4">
-                                    <label>Uso</label>
-                                    <input id="valUs" type="text" name="" class="form-control" placeholder="Uso que se le dara al combustible" maxlength="60" required>
+                                    <label>Área de aplicación</label>
+                                    <input id="valAre" type="text" name="" class="form-control" placeholder="Área de aplicación" maxlength="60" required>
                                 </div>
                             </div>
                         </div>
                     </form>
+
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-danger" data-dismiss="modal">Cerra</button>
-                    <button type="button" class="btn btn-primary" onclick="saveConbustible();">Guardar</button>
+                    <button type="button" class="btn btn-primary" onclick="savePrestamo();">Guardar</button>
                 </div>
                 </div>
             </div>
@@ -115,28 +105,19 @@
       <div class="col-sm-1"></div>
       <div class="col">
         <div class="mb-5">
-          <h3>Combustibles</h3>
+          <h3>Balneario Dios Padre</h3>
         </div>
         <table id="example" class="table table-bordered" style="width:100%">
           <thead class="thead-dark">
               <tr>
                   <th>Fecha</th>
-                  <th>Combustible</th>
-                  <th>Trabajador</th>
-                  <th>Uso</th>
+                  <th>Material</th>
+                  <th>Nombre del solicitante</th>
+                  <th>Área</th>
               </tr>
           </thead>
             <tbody id="trbody">
-
             </tbody>
-          <!-- <tfoot>
-              <tr>
-                  <th>Name</th>
-                  <th>Position</th>
-                  <th>Office</th>
-                  <th>Age</th>
-              </tr>
-          </tfoot> -->
       </table>
       </div>
       <div class="col-sm-1"></div>
@@ -149,7 +130,7 @@
 <script src="https://code.jquery.com/jquery-3.5.1.js"></script>
 <!-- Datatables -->
 <script src="https://cdn.datatables.net/1.13.1/js/jquery.dataTables.min.js"></script>
-<script src="../Backend/js/conbustible.js"></script>
+<script src="../Backend/js/bdp.js"></script>
 </html>
 
 

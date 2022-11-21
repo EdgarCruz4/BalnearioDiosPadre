@@ -1,4 +1,9 @@
 <?php
-    // include_once 'Frontend/menu.php';
-    header('Location: frontend/menu.php')
+    session_start();
+    if(isset($_SESSION['name'])){
+        header("location: Frontend/cooperativa.php");
+    }
+    else{
+        header("location: Frontend/login.php");
+    }
 ?>
