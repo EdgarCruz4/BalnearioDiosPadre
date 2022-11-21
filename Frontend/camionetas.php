@@ -1,11 +1,13 @@
 <?php 
-
-session_start();
-if ($_SESSION['id_almacenista'] == null) {
-  header('Location: login.php');
-}else{
-  echo `<script>mostrarRegistros();</script>`;
-}
+    //Bro si quieres usar las variables de sesion, las puedes llamar de la siguiente forma
+    // $_SESSION['name']
+    // $_SESSION['name_id']
+    session_start();
+    if ($_SESSION['id_almacenista'] == null) {
+      header('Location: login.php');
+    }else{
+      echo `<script>mostrarRegistros();</script>`;
+    }
 
 
 ?>
