@@ -1,3 +1,15 @@
+<?php 
+
+session_start();
+if ($_SESSION['id_almacenista'] == null) {
+  header('Location: login.php');
+}else{
+  echo `<script>mostrarPrestamos();</script>`;
+}
+
+
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -42,12 +54,12 @@
                 </div>
                 <div class="modal-body">
                     
-                    <form method="POST" enctype="multipart/form-data" action="../Backend/act_mst_insert.php">
+                    <form id="formDatos" method="POST" enctype="multipart/form-data" action="../Backend/act_mst_insert.php">
                         <div class="form-group">
                             <div class="row">
                                 <div class="col">
                                     <label>Material</label>
-                                    <textarea class="form-control" name="" rows="3" placeholder="Material prestado" maxlength="500"></textarea>
+                                    <textarea id="valMaterial" class="form-control" name="" rows="3" placeholder="Material prestado" maxlength="500"></textarea>
                                 </div>
                             </div>
 
@@ -61,14 +73,14 @@
                             <div class="form-row">
                                 <div class="col mt-4">
                                     <label>Nombre del solicitante</label>
-                                    <input type="text" name="" class="form-control" placeholder="Nombre" maxlength="60" required>
+                                    <input id="valSolicitante" type="text" name="" class="form-control" placeholder="Nombre" maxlength="60" required>
                                 </div>
                             </div>
 
                             <div class="form-row">
                                 <div class="col mt-4">
                                     <label>Área de aplicación</label>
-                                    <input type="text" name="" class="form-control" placeholder="Área de aplicación" maxlength="60" required>
+                                    <input id="valArea" type="text" name="" class="form-control" placeholder="Área de aplicación" maxlength="60" required>
                                 </div>
                             </div>
                         </div>
@@ -77,7 +89,7 @@
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-danger" data-dismiss="modal">Cerra</button>
-                    <button type="button" class="btn btn-primary">Guardar</button>
+                    <button type="button" class="btn btn-primary" onclick="saveNew();">Guardar</button>
                 </div>
                 </div>
             </div>
@@ -102,19 +114,7 @@
                   <th>Área</th>
               </tr>
           </thead>
-            <tbody>
-                <tr>
-                    <td>Tiger Nixon</td>
-                    <td>System Architect</td>
-                    <td>Edinburgh</td>
-                    <td>61</td>
-                </tr>
-                <tr>
-                    <td>Garrett Winters</td>
-                    <td>Accountant</td>
-                    <td>Tokyo</td>
-                    <td>63</td>
-                </tr>
+            <tbody id="trbody">
             </tbody>
       </table>
       </div>
@@ -128,11 +128,7 @@
 <script src="https://code.jquery.com/jquery-3.5.1.js"></script>
 <!-- Datatables -->
 <script src="https://cdn.datatables.net/1.13.1/js/jquery.dataTables.min.js"></script>
-<script>
-  $(document).ready(function () {
-    $('#example').DataTable();
-  });
-</script>
+<script src="../Backend/js/cooperativa.js"></script>
 </html>
 
 
