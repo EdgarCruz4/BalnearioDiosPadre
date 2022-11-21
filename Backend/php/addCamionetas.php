@@ -8,7 +8,7 @@
     $gasolina_cargada=$_POST['gasolina_cargada'];
     $id_estatus=1;
     session_start();
-    $id_almacenista = $_SESSION['id_almacenista'];
+    $id_almacenista = $_SESSION['name_id'];
     $query = "INSERT INTO `camionetas` 
     (`fecha`, `conductor`, `camioneta`, `hora_salida`, `actividad`, `gasolina_cargada`, `id_estatus`, `id_almacenista`) 
     VALUES ('$fecha', '$conductor', '$camioneta', '$hora_salida', '$actividad', '$gasolina_cargada', '$id_estatus', '$id_almacenista')";
