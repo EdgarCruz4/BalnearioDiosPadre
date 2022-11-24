@@ -2,14 +2,7 @@
   //Bro si quieres usar las variables de sesion, las puedes llamar de la siguiente forma
   // $_SESSION['name']
   // $_SESSION['name_id']
-  session_start();
-  if ($_SESSION['id_almacenista'] == null) {
-    header('Location: login.php');
-  }else{
-    echo `<script>mostrarPrestamos();</script>`;
-  }
-
-
+  echo `<script>mostrarPrestamos();</script>`;
 ?>
 
 <!DOCTYPE html>
@@ -68,7 +61,7 @@
                             <div class="row">
                                 <div class="col mt-4">
                                     <label>Fecha</label>
-                                    <input type="date" name="" class="form-control" value="<?php echo $today;?>" required>
+                                    <input type="date" name="" class="form-control" value="<?php echo $today;?>" readonly required>
                                 </div>
                             </div>
                             

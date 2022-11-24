@@ -6,7 +6,7 @@
     $area=$_POST['area'];    
     $id_estatus=1;
     session_start();
-    $id_almacenista = $_SESSION['id_almacenista'];
+    $id_almacenista = $_SESSION['name_id'];
     $query2 = "INSERT INTO `bodega` 
     (`fecha`, `material`, `solicitante`, `area`, `id_estatus`, `id_almacenista`) 
     VALUES ('$fecha', '$material', '$solicitante', '$area', '$id_almacenista', '$id_estatus')";

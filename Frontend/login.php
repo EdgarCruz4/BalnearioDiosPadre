@@ -28,7 +28,7 @@
                   </div>
                   <div class="mb-5 mt-2" align="center">
                     <h3><span>Inicia sesión</span></h3>
-                    <p>Sistema de administración de herramientas y préstamos</p>
+                    <label class="form-check-label">Sistema de administración de herramientas y préstamos</label>
                   </div>
                   <form action="../backend/login.php" method="post" id="formularioDts">
                     <div class="form-group first">
@@ -39,6 +39,10 @@
                     <div class="form-group last">
                       <label for="password">Contraseña</label>
                       <input type="password" class="form-control" name="password" required>
+                    </div>
+                    <div class="form-check mt-3 mb-3">
+                      <input class="form-check-input" type="checkbox" value="" name="" required/>
+                      <label class="form-check-label" for="form2Example31"><a href="terminosUso.html" style="text-decoration:none" target="_blank"> Acepto terminos de uso y condiciones</a></label>
                     </div>
                     <div>
                       <button class="button" type="submit" >Iniciar sesión</button>

@@ -2,14 +2,7 @@
     //Bro si quieres usar las variables de sesion, las puedes llamar de la siguiente forma
     // $_SESSION['name']
     // $_SESSION['name_id']
-    session_start();
-    if ($_SESSION['id_almacenista'] == null) {
-    header('Location: login.php');
-    }else{
     echo `<script>selectCombustible();</script>`;
-    }
-
-
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -60,7 +53,7 @@
                             <div class="row">
                                 <div class="col mt-4">
                                     <label>Fecha</label>
-                                    <input type="date" name="" class="form-control" value="<?php echo $today;?>" required>
+                                    <input type="date" name="" class="form-control" value="<?php echo $today;?>" readonly required>
                                 </div>
                             </div>
                             
@@ -77,7 +70,7 @@
                                 <div class="col">
                                     <label>Cantidad requerida</label>
                                     <div class="input-group-prepend">
-                                        <input id="valCa" type="number" class="form-control" name="" required>
+                                        <input id="valCa" type="number" class="form-control" name="" value="1" min="1" required>
                                         <span class="input-group-text">Lt</span>
                                     </div>
                                 </div>
