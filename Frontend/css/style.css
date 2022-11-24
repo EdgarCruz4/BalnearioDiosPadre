@@ -76,6 +76,30 @@ div form div .alert-warning{
 	font-weight: 500;
 	transition: all .50s ease;
 }
+.titulo{
+	font-size: 2em;
+	color: #0070C0;
+	text-align: center;
+	margin-top: 100px;
+	margin-bottom: 30px;
+}
+.text{
+    text-align: justify;
+	font-size: 1.1em;
+    margin-bottom: 30px;
+	line-height: 30px;
+}
+ol .seccion{
+	margin-left: 5px;
+	font-size: 1.1em;
+}
+.subtitulo{
+	font-size: 1.3em;
+	font-weight: bold;
+	margin-top: 20px;
+	margin-bottom: 20px;
+}
+
 .user{
 	display: flex;
 	align-items: center;
