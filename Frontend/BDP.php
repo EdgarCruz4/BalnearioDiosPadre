@@ -60,7 +60,7 @@
                             <div class="row">
                                 <div class="col mt-4">
                                     <label>Fecha</label>
-                                    <input type="date" name="" class="form-control" value="<?php echo $today;?>" required>
+                                    <input type="date" name="" class="form-control" value="<?php echo $today;?>" readonly required>
                                 </div>
                             </div>
                             

@@ -67,14 +67,14 @@
                             <div class="row">
                                 <div class="col mt-4">
                                     <label>Fecha</label>
-                                    <input type="date" name="" class="form-control" value="<?php echo $today;?>" required>
+                                    <input type="date" name="" class="form-control" value="<?php echo $today;?>" readonly required>
                                 </div>
                             </div>
 
                             <div class="form-row">
                                 <div class="col mt-4">
                                     <label>Hora de salida</label>
-                                    <input type="time" name="" class="form-control" value="<?php echo $time?>" required>
+                                    <input type="time" name="" class="form-control" value="<?php echo $time?>" readonly required>
                                 </div>
                             </div>
 
@@ -96,7 +96,7 @@
                                 <div class="col mt-4">
                                     <label>Gasolina cargada</label>
                                     <div class="input-group-prepend">
-                                        <input id="valGasolina" type="number" class="form-control">
+                                        <input id="valGasolina" type="number" value="1" min="1" class="form-control">
                                         <span class="input-group-text">Lt</span>
                                     </div>
                                 </div>
@@ -122,8 +122,10 @@
         <div class="mb-5">
             <h3>Camionetas</h3>
         </div>
-        <button class="eventTodo" onclick="mostrarTodo();">Pendientes</button>
-        <button class="eventPendientes" onclick="mostrarPendientes();">Ver todo</button>
+        <div class="mb-4">
+            <button class="eventTodo btn btn-primary" onclick="mostrarTodo();">Pendientes</button>
+            <button class="eventPendientes btn btn-primary" onclick="mostrarPendientes();">Ver todo</button>
+        </div>
         <table id="example" class="table table-bordered" style="width:100%">
             <thead class="thead-dark">
                 <tr>
