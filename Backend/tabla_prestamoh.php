@@ -63,9 +63,10 @@
 
     <script>
       $(document).ready(function () {
-    $('#example').DataTable({})
+    $('#example').DataTable()
       });
     </script>
+    <script src="../Backend/js/datatableEspañol.js"></script>
 
 
     

@@ -1,7 +1,5 @@
 <?php 
-    //Bro si quieres usar las variables de sesion, las puedes llamar de la siguiente forma
-    // $_SESSION['name']
-    // $_SESSION['name_id']
+    require_once '../Backend/conexion.php';
     echo `<script>selectCombustible();</script>`;
 ?>
 <!DOCTYPE html>
@@ -93,8 +91,8 @@
                     </form>
                 </div>
                 <div class="modal-footer">
-                    <button type="button" class="btn btn-danger" data-dismiss="modal">Cerra</button>
-                    <button type="button" class="btn btn-primary" onclick="saveConbustible();">Guardar</button>
+                    <button type="button" class="btn btn-danger" data-dismiss="modal"><i class="fa-solid fa-xmark"></i>&nbsp;Cerra</button>
+                    <button type="button" class="btn btn-primary" onclick="saveConbustible();"><i class="fa-solid fa-floppy-disk"></i>&nbsp;Guardar</button>
                 </div>
                 </div>
             </div>
@@ -142,6 +140,7 @@
 <script src="https://code.jquery.com/jquery-3.5.1.js"></script>
 <!-- Datatables -->
 <script src="../Backend/js/datatable/jquery.dataTables.min.js"></script>
+<script src="../Backend/js/datatableEspañol.js"></script>
 <script src="../Backend/js/conbustible.js"></script>
 </html>
 
