@@ -59,5 +59,11 @@
     <script src="../backend/js/popper.min.js"></script>
     <script src="../backend/js/bootstrap.min.js"></script>
     <script src="../backend/js/login.js"></script>
+    <?php
+     $error = isset($_GET['error']);
+      if ($error == 1){
+        echo "<script language='JavaScript'>alert ('Por favor, Escriba bien su correo o contraseña!!.'); </script>";
+        }
+    ?>
   </body>
 </html>

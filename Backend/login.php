@@ -22,8 +22,8 @@
         header("location:../Frontend/cooperativa.php");
     }
     else
-    {
-        header("location:../Frontend/login.php");
+    {   
+        header("location:../Frontend/login.php?error=1");
     }
 
 
