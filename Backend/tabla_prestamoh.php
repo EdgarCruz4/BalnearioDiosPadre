@@ -14,6 +14,7 @@
             <th>Área</th>
             <th>Recibe</th>
             <th>Estatus</th>
+            <th>Eliminar</th>
         </tr>
     </thead>
     <tbody>
@@ -44,16 +45,20 @@
                 if($prestamo['id_estatus'] == 1)
                 {
               ?>
-                <form method="POST" action="../Backend/prst_hrram_recibido.php">
-                  <input type="hidden" name="id" value="<?php echo $prestamo['id'];?>">
-                  <div align="center"><button class="btn btn-success">Recibir</button></div>
-                </form>
+                <input type="hidden" name="id" value="<?php echo $prestamo['id'];?>">
+                <div align="center"><button class="btn btn-success" id="recibir">Recibir</button></div>
               <?php
                 }
                 else{
                   echo 'Entregado';
                 }
               ?>
+            </td>
+            <td>
+              <div align="center">
+                <input type="hidden" name="id" id="prestamo_id" value="<?php echo $prestamo['id'];?>">
+                <button class="btn btn-danger" id="eliminar">Eliminar</button>
+              </div>
             </td>
         </tr>
     <?php
@@ -63,7 +68,39 @@
 
     <script>
       $(document).ready(function () {
-    $('#example').DataTable()
+        $('#example').DataTable()
+      });
+      $('#eliminar').click(function(){
+        var mensaje = confirm("¿Quiere eliminar el registro?");
+
+        if(mensaje == true){
+          //confirmación
+          var id=$('#prestamo_id').val();
+          var ruta="id="+id;
+
+          $.ajax({
+            url: '../Backend/eliminar_p.php',
+            type: 'POST',
+            data: ruta,
+            success:function(data){
+            prestamo_herramientas();
+            }
+          })
+        }
+      });
+      $('#recibir').click(function(){
+        //confirmación
+        var id=$('#prestamo_id').val();
+        var ruta="id="+id;
+
+        $.ajax({
+          url: '../Backend/prst_hrram_recibido.php',
+          type: 'POST',
+          data: ruta,
+          success:function(data){
+            prestamo_herramientas();
+          }
+        })
       });
     </script>
     <script src="../Backend/js/datatableEspañol.js"></script>
