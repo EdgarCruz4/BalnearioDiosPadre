@@ -91,8 +91,8 @@
                     </form>
                 </div>
                 <div class="modal-footer">
-                    <button type="button" class="btn btn-danger" data-dismiss="modal"><i class="fa-solid fa-xmark"></i>&nbsp;Cerra</button>
-                    <button type="button" class="btn btn-primary" onclick="saveConbustible();"><i class="fa-solid fa-floppy-disk"></i>&nbsp;Guardar</button>
+                    <button type="button" class="btn btn-danger" data-dismiss="modal"><i class="fa-solid fa-xmark"></i>&nbsp;&nbsp;Cerrar</button>
+                    <button type="button" class="btn btn-primary" onclick="saveConbustible();"><i class="fa-solid fa-floppy-disk"></i>&nbsp;&nbsp;Guardar</button>
                 </div>
                 </div>
             </div>
