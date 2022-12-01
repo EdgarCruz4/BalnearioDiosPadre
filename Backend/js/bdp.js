@@ -1,4 +1,4 @@
-let trCont = document.getElementById("trbody");
+
 
 $(document).ready(function () {
     selectPrestamo();
@@ -14,7 +14,6 @@ function savePrestamo() {
         if (respuesta!=null) {
             var data = JSON.parse(respuesta);
             if (data.response == "SUCCESS") {
-                trCont.innerHTML = "";
                 selectPrestamo();
                 alert("Registrado correctamente");
                 document.getElementById('formDatos').reset();
@@ -35,6 +34,27 @@ function selectPrestamo() {
             var data = JSON.parse(respuesta);
             if (data.response == "SUCCESS") {
                 let detail = data.detail;
+
+                let divCont = document.getElementById("divContenedor");
+
+                divCont.innerHTML = `
+                
+                <table id="example" class="table table-bordered" style="width:100%">
+                <thead class="thead-dark">
+                    <tr>
+                        <th>Fecha</th>
+                        <th>Material</th>
+                        <th>Nombre del solicitante</th>
+                        <th>Área</th>
+                    </tr>
+                </thead>
+                  <tbody id="trbody">
+                  </tbody>
+            </table>
+                
+                `;
+
+                let trCont = document.getElementById("trbody");
                 detail.forEach(row1 => {
                     trCont.innerHTML += `
                     <tr>

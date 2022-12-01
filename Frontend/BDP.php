@@ -99,18 +99,10 @@
         <div class="mb-5">
           <h3>Balneario Dios Padre</h3>
         </div>
-        <table id="example" class="table table-bordered" style="width:100%">
-          <thead class="thead-dark">
-              <tr>
-                  <th>Fecha</th>
-                  <th>Material</th>
-                  <th>Nombre del solicitante</th>
-                  <th>Área</th>
-              </tr>
-          </thead>
-            <tbody id="trbody">
-            </tbody>
-      </table>
+        <div id="divContenedor">
+
+        </div>
+
       </div>
       <div class="col-sm-1"></div>
     </div>

@@ -110,27 +110,11 @@
         <div class="mb-5">
           <h3>Combustibles</h3>
         </div>
-        <table id="example" class="table table-bordered" style="width:100%">
-          <thead class="thead-dark">
-              <tr>
-                  <th>Fecha</th>
-                  <th>Combustible</th>
-                  <th>Trabajador</th>
-                  <th>Uso</th>
-              </tr>
-          </thead>
-            <tbody id="trbody">
 
-            </tbody>
-          <!-- <tfoot>
-              <tr>
-                  <th>Name</th>
-                  <th>Position</th>
-                  <th>Office</th>
-                  <th>Age</th>
-              </tr>
-          </tfoot> -->
-      </table>
+        <div id="divContenedor">
+
+        </div>
+
       </div>
       <div class="col-sm-1"></div>
     </div>
