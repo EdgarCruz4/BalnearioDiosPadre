@@ -46,6 +46,7 @@ function selectPrestamo() {
                         <th>Material</th>
                         <th>Nombre del solicitante</th>
                         <th>Área</th>
+                        <th>Eliminar</th>
                     </tr>
                 </thead>
                   <tbody id="trbody">
@@ -62,10 +63,29 @@ function selectPrestamo() {
                         <td>${row1.material}</td>
                         <td>${row1.solicitante}</td>
                         <td>${row1.area}</td>
+                        <td><button onclick="deleteRegistro(${row1.id});" class="btn btn-danger" id="eliminar">Eliminar</button></td>
                     </tr>
                     `;
                 });
                 $('#example').DataTable();
+            } else {
+                alert('Ha ocurrido un error, intetelo mas tarde');
+                window.location= '';
+            }
+        }else{
+            alert('Ha ocurrido un error, intetelo mas tarde');
+            window.location= '';
+        }
+    });
+}
+
+function deleteRegistro(idRegistro) {
+    $.post('../Backend/php/deleteBDP.php',{id:idRegistro},function(respuesta){
+        if (respuesta!=null) {
+            var data = JSON.parse(respuesta);
+            if (data.response == "SUCCESS") {
+                selectPrestamo();
+                alert("El registro ha sido eliminado");
             } else {
                 alert('Ha ocurrido un error, intetelo mas tarde');
                 window.location= '';

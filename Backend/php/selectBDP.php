@@ -7,6 +7,7 @@
     $ar = array();
     foreach ($result as $key) {
         array_push($ar,[
+            'id'=>$key['id'],
             'fecha'=>$key['fechaF'],
             'material'=>$key['material'],
             'solicitante'=>$key['solicitante'],

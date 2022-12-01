@@ -30,7 +30,9 @@ function saveCamionetas(val1) {
         if (respuesta!=null) {
             var data = JSON.parse(respuesta);
             if (data.response == "SUCCESS") {
-                saveConbustible(val1);
+                mostrarRegistros();
+                alert("Registrado correctamente");
+                document.getElementById('formDatos').reset();
             } else {
                 alert('Ha ocurrido un error, intetelo mas tarde');
                 window.location= '';
@@ -41,7 +43,7 @@ function saveCamionetas(val1) {
         }
     });
 }
-
+/*
 function saveConbustible(val2) {
     $.post('../Backend/php/addConbustible.php',val2,function(respuesta2){
         if (respuesta2!=null) {
@@ -60,7 +62,7 @@ function saveConbustible(val2) {
         }
     });
 }
-
+*/
 function mostrarRegistros() {
     $.post('../Backend/php/selectCamionetas.php',{v:"v"},function(respuesta){
         if (respuesta!=null) {
@@ -79,6 +81,7 @@ function mostrarRegistros() {
                         <th>Actividad</th>
                         <th>Hr. Entregra</th>
                         <th>Gasolina Cargada</th>
+                        <th>Eliminar</th>
                     </tr>
                 </thead>
                 <tbody id="trbody">
@@ -107,7 +110,8 @@ function mostrarRegistros() {
                                 </form>
                             </td>
                             <td>${row1.gasolina_cargada}</td>
-                        </tr>
+                            <td><button onclick="deleteRegistro(${row1.id});" class="btn btn-danger" id="eliminar">Eliminar</button></td>            
+                            </tr>
                         `;
                     } else {
                         trCont.innerHTML += `
@@ -119,6 +123,7 @@ function mostrarRegistros() {
                             <td>${row1.actividad}</td>
                             <td><div align="center">${row1.hora_entrega}</div></td>
                             <td>${row1.gasolina_cargada}</td>
+                            <td><button onclick="deleteRegistro(${row1.id});" class="btn btn-danger" id="eliminar">Eliminar</button></td>            
                         </tr>
                         `;
                     }
@@ -157,5 +162,23 @@ function updateEstatus(id_prestamo){
             alert('Ha ocurrido un error, intetelo mas tarde');
             window.location= '';
         }*/
+    });
+}
+
+function deleteRegistro(idRegistro) {
+    $.post('../Backend/php/deleteCamionetas.php',{id:idRegistro},function(respuesta){
+        if (respuesta!=null) {
+            var data = JSON.parse(respuesta);
+            if (data.response == "SUCCESS") {
+                mostrarRegistros();
+                alert("El registro ha sido eliminado");
+            } else {
+                alert('Ha ocurrido un error, intetelo mas tarde');
+                window.location= '';
+            }
+        }else{
+            alert('Ha ocurrido un error, intetelo mas tarde');
+            window.location= '';
+        }
     });
 }
