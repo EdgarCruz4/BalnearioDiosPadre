@@ -7,6 +7,7 @@ $(document).ready(function () {
 
 function saveConbustible() {
     let values = {
+        combustible:document.querySelector('#valCo').value,
         gasolina_cargada:document.querySelector("#valCa").value+" litros de "+document.querySelector("#valCo").value,
         conductor:document.querySelector("#valSo").value,
         actividad:document.querySelector("#valUs").value

@@ -1,6 +1,9 @@
 <?php 
     require("../conexion.php");
-    $id=$_POST['idRegistro'];
+    $fecha=date("Y-m-d");
+    $gasolina_cargada=$_POST['gasolina_cargada'];
+    $conductor=$_POST['conductor'];
+    $actividad=$_POST['actividad'];
     $query2 = "INSERT INTO `combustible` 
     (`fecha`, `combustible`, `solicitante`, `concepto`) 
     VALUES ('$fecha', '$gasolina_cargada', '$conductor', '$actividad')";
