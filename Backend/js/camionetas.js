@@ -1,4 +1,4 @@
-let trCont = document.getElementById("trbody");
+
 
 $(document).ready(function () {
     mostrarRegistros();
@@ -47,7 +47,6 @@ function saveConbustible(val2) {
         if (respuesta2!=null) {
             var data2 = JSON.parse(respuesta2);
             if (data2.response == "SUCCESS") {
-                trCont.innerHTML = "";
                 mostrarRegistros();
                 alert("Registrado correctamente");
                 document.getElementById('formDatos').reset();
@@ -67,9 +66,33 @@ function mostrarRegistros() {
         if (respuesta!=null) {
             var data = JSON.parse(respuesta);
             if (data.response == "SUCCESS") {
+                let divCont = document.getElementById("divContenedor");
+                divCont.innerHTML = `
+                
+                <table id="example" class="table table-bordered" style="width:100%">
+                <thead class="thead-dark">
+                    <tr>
+                        <th>Conductor</th>
+                        <th>Camioneta</th>
+                        <th>Fecha</th>
+                        <th>Hr. Salisa</th>
+                        <th>Actividad</th>
+                        <th>Hr. Entregra</th>
+                        <th>Gasolina Cargada</th>
+                    </tr>
+                </thead>
+                <tbody id="trbody">
+    
+                </tbody>
+            </table>
+                
+
+                `;
                 let detail = data.detail;
+                let trCont = document.getElementById("trbody");
                 detail.forEach(row1 => {
                     if (row1.estatus == 1) {
+                        
                         trCont.innerHTML += `
                         <tr class="null">
                             <td>${row1.conductor}</td>
@@ -115,12 +138,17 @@ function mostrarRegistros() {
 
 function updateEstatus(id_prestamo){
     $.post('../Backend/php/updateCamioneta.php',{id:id_prestamo},function(respuesta){
-        if (respuesta!=null) {
+        
+        
+        var data = JSON.parse(respuesta);
+        console.log(data);
+        
+        /*if (respuesta!=null) {
             var data = JSON.parse(respuesta);
+            console.log("data");
             if (data.response == "SUCCESS") {
-                trCont.innerHTML = "";
                 mostrarPrestamos();
-                alert("Material evuelto");
+                alert("Material devuelto");
             } else {
                 alert('Ha ocurrido un error, intetelo mas tarde');
                 window.location= '';
@@ -128,6 +156,6 @@ function updateEstatus(id_prestamo){
         }else{
             alert('Ha ocurrido un error, intetelo mas tarde');
             window.location= '';
-        }
+        }*/
     });
 }
