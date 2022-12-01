@@ -23,6 +23,7 @@
     $result_consulta = $consulta->get_prestamos_renta($route);
         while($prestamo = $result_consulta->fetch_assoc())
         {
+          $prestamoId = $prestamo['id'];
         ?>
         <tr>
             <td><?php echo $prestamo['fecha'];?></td>
@@ -45,8 +46,9 @@
                 if($prestamo['id_estatus'] == 1)
                 {
               ?>
-                <input type="hidden" name="id" value="<?php echo $prestamo['id'];?>">
-                <div align="center"><button class="btn btn-success" id="recibir">Recibir</button></div>
+                <div align="center">
+                  <button class="btn btn-success" id="recibir" onclick="recibir('<?php echo $prestamoId;?>')">Recibir</button>
+                </div>
               <?php
                 }
                 else{
@@ -56,8 +58,7 @@
             </td>
             <td>
               <div align="center">
-                <input type="hidden" name="id" id="prestamo_id" value="<?php echo $prestamo['id'];?>">
-                <button class="btn btn-danger" id="eliminar">Eliminar</button>
+                <button class="btn btn-danger" id="eliminar" onclick="eliminar('<?php echo $prestamoId;?>')">Eliminar</button>
               </div>
             </td>
         </tr>
@@ -70,13 +71,13 @@
       $(document).ready(function () {
         $('#example').DataTable()
       });
-      $('#eliminar').click(function(){
+      function eliminar(prestamoId){
         var mensaje = confirm("¿Quiere eliminar el registro?");
 
         if(mensaje == true){
           //confirmación
-          var id=$('#prestamo_id').val();
-          var ruta="id="+id;
+          // var id=$('#prestamo_id').val();
+          var ruta="id="+prestamoId;
 
           $.ajax({
             url: '../Backend/eliminar_p.php',
@@ -87,11 +88,11 @@
             }
           })
         }
-      });
-      $('#recibir').click(function(){
+      };
+      function recibir(prestamoId){
         //confirmación
-        var id=$('#prestamo_id').val();
-        var ruta="id="+id;
+        // var id=$('#prestamo_id').val();
+        var ruta="id="+prestamoId;
 
         $.ajax({
           url: '../Backend/prst_hrram_recibido.php',
@@ -101,7 +102,7 @@
             prestamo_herramientas();
           }
         })
-      });
+      };
     </script>
     <script src="../Backend/js/datatableEspañol.js"></script>
 

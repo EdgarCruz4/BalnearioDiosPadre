@@ -1,4 +1,4 @@
-let trCont = document.getElementById("trbody");
+let divCont = document.getElementById("divContenedor");
 
 $(document).ready(function () {
     mostrarPrestamos();
@@ -13,7 +13,6 @@ function saveNew() {
         if (respuesta!=null) {
             var data = JSON.parse(respuesta);
             if (data.response == "SUCCESS") {
-                trCont.innerHTML = "";
                 mostrarPrestamos();
                 alert("Registrado correctamente");
                 document.getElementById('formDatos').reset();
@@ -33,7 +32,27 @@ function mostrarPrestamos() {
         if (respuesta!=null) {
             var data = JSON.parse(respuesta);
             if (data.response == "SUCCESS") {
+                
                 let detail = data.detail;
+                divCont.innerHTML = `
+                
+                <table id="example" class="table table-bordered" style="width:100%">
+                <thead class="thead-dark">
+                    <tr>
+                        <th>Fecha</th>
+                        <th>Material</th>
+                        <th>Nombre del solicitante</th>
+                        <th>Área</th>
+                        <th>Eliminar</th>
+                    </tr>
+                    </thead>
+                  <tbody id="trbody">
+                  </tbody>
+                </table>
+                
+                `;
+
+                let trCont = document.getElementById("trbody");
                 detail.forEach(row1 => {
                     trCont.innerHTML += `
                     <tr class="null">
@@ -41,9 +60,11 @@ function mostrarPrestamos() {
                         <td>${row1.concepto}</td>
                         <td>${row1.solicitante}</td>
                         <td>${row1.area}</td>
+                        <td><button onclick="deleteRegistro(${row1.id});" class="btn btn-danger" id="eliminar">Eliminar</button></td>
                     </tr>
                     `;
                 });
+
                 $('#example').DataTable();
             } else {
                 alert('Ha ocurrido un error, intetelo mas tarde');
@@ -61,9 +82,26 @@ function updateEstatus(id_prestamo) {
         if (respuesta!=null) {
             var data = JSON.parse(respuesta);
             if (data.response == "SUCCESS") {
-                trCont.innerHTML = "";
                 mostrarPrestamos();
                 alert("Material evuelto");
+            } else {
+                alert('Ha ocurrido un error, intetelo mas tarde');
+                window.location= '';
+            }
+        }else{
+            alert('Ha ocurrido un error, intetelo mas tarde');
+            window.location= '';
+        }
+    });
+}
+
+function deleteRegistro(idRegistro) {
+    $.post('../Backend/php/deleteCooperativa.php',{id:idRegistro},function(respuesta){
+        if (respuesta!=null) {
+            var data = JSON.parse(respuesta);
+            if (data.response == "SUCCESS") {
+                mostrarPrestamos();
+                alert("El registro ha sido eliminado");
             } else {
                 alert('Ha ocurrido un error, intetelo mas tarde');
                 window.location= '';

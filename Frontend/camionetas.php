@@ -124,22 +124,8 @@
             <button class="eventTodo btn btn-primary" onclick="mostrarTodo();">Pendientes</button>
             <button class="eventPendientes btn btn-primary" onclick="mostrarPendientes();">Ver todo</button>
         </div>
-        <table id="example" class="table table-bordered" style="width:100%">
-            <thead class="thead-dark">
-                <tr>
-                    <th>Conductor</th>
-                    <th>Camioneta</th>
-                    <th>Fecha</th>
-                    <th>Hr. Salisa</th>
-                    <th>Actividad</th>
-                    <th>Hr. Entregra</th>
-                    <th>Gasolina Cargada</th>
-                </tr>
-            </thead>
-            <tbody id="trbody">
+        <div id="divContenedor"></div>
 
-            </tbody>
-        </table>
       </div>
       <div class="col-sm-1"></div>
     </div>

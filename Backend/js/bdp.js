@@ -1,4 +1,4 @@
-let trCont = document.getElementById("trbody");
+
 
 $(document).ready(function () {
     selectPrestamo();
@@ -14,7 +14,6 @@ function savePrestamo() {
         if (respuesta!=null) {
             var data = JSON.parse(respuesta);
             if (data.response == "SUCCESS") {
-                trCont.innerHTML = "";
                 selectPrestamo();
                 alert("Registrado correctamente");
                 document.getElementById('formDatos').reset();
@@ -35,6 +34,28 @@ function selectPrestamo() {
             var data = JSON.parse(respuesta);
             if (data.response == "SUCCESS") {
                 let detail = data.detail;
+
+                let divCont = document.getElementById("divContenedor");
+
+                divCont.innerHTML = `
+                
+                <table id="example" class="table table-bordered" style="width:100%">
+                <thead class="thead-dark">
+                    <tr>
+                        <th>Fecha</th>
+                        <th>Material</th>
+                        <th>Nombre del solicitante</th>
+                        <th>Área</th>
+                        <th>Eliminar</th>
+                    </tr>
+                </thead>
+                  <tbody id="trbody">
+                  </tbody>
+            </table>
+                
+                `;
+
+                let trCont = document.getElementById("trbody");
                 detail.forEach(row1 => {
                     trCont.innerHTML += `
                     <tr>
@@ -42,10 +63,29 @@ function selectPrestamo() {
                         <td>${row1.material}</td>
                         <td>${row1.solicitante}</td>
                         <td>${row1.area}</td>
+                        <td><div align="center"><button onclick="deleteRegistro(${row1.id});" class="btn btn-danger" id="eliminar">Eliminar</button></div></td>
                     </tr>
                     `;
                 });
                 $('#example').DataTable();
+            } else {
+                alert('Ha ocurrido un error, intetelo mas tarde');
+                window.location= '';
+            }
+        }else{
+            alert('Ha ocurrido un error, intetelo mas tarde');
+            window.location= '';
+        }
+    });
+}
+
+function deleteRegistro(idRegistro) {
+    $.post('../Backend/php/deleteBDP.php',{id:idRegistro},function(respuesta){
+        if (respuesta!=null) {
+            var data = JSON.parse(respuesta);
+            if (data.response == "SUCCESS") {
+                selectPrestamo();
+                alert("El registro ha sido eliminado");
             } else {
                 alert('Ha ocurrido un error, intetelo mas tarde');
                 window.location= '';
