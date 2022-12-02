@@ -28,7 +28,7 @@
                   </div>
                   <div class="mb-5 mt-2" align="center">
                     <h3><span>Inicia sesión</span></h3>
-                    <label class="form-check-label">Sistema de administración de herramientas y préstamos</label>
+                    <label class="form-check-label">Sistema de prestamos de herramientas Dios Padre</label>
                   </div>
                   <form action="../backend/login.php" method="post" id="formularioDts">
                     <div class="form-group first">
