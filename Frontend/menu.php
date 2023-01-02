@@ -40,7 +40,7 @@
 			<li><a style="text-decoration:none" href="combustible.php">Combustibles</a></li>
 			<li><a style="text-decoration:none" href="camionetas.php">Camionetas</a></li>
 			<li><a style="text-decoration:none" class="active" data-toggle="modal" data-target="#usuario">Usuario</a></li>
-			<li><a style="text-decoration:none" class="active" href="../Backend/exit.php">Exit</a></li>
+			<li><a style="text-decoration:none" class="active" href="../Backend/exit.php">Salir</a></li>
 		</ul>
 
 		<div class="main">
@@ -85,8 +85,8 @@
 
                 </div>
                 <div class="modal-footer">
-                    <button type="button" class="btn btn-danger" data-dismiss="modal">Cerra</button>
-                    <button type="submit" class="btn btn-primary">Guardar</button>
+                    <button type="button" class="btn btn-danger" data-dismiss="modal"><i class="fa-solid fa-xmark"></i>&nbsp;&nbsp;Cerra</button>
+                    <button type="submit" class="btn btn-primary"><i class="fa-solid fa-floppy-disk"></i>&nbsp;&nbsp;Guardar</button>
                 </div>
                 </form>
                 </div>
