@@ -67,7 +67,7 @@ function selectCombustible() {
                             <td>${row1.combustible}</td>
                             <td>${row1.solicitante}</td>
                             <td>${row1.concepto}</td>
-                            <td><button onclick="deleteRegistro(${row1.id});" class="btn btn-danger" id="eliminar">Eliminar</button></td>            
+                            <td><div align="center"><button onclick="deleteRegistro(${row1.id});" class="btn btn-danger" id="eliminar">Eliminar</button></div></td>            
                         </tr>
                         `;
                     })

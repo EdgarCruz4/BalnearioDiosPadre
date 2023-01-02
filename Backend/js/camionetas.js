@@ -110,7 +110,7 @@ function mostrarRegistros() {
                                 </form>
                             </td>
                             <td>${row1.gasolina_cargada}</td>
-                            <td><button onclick="deleteRegistro(${row1.id});" class="btn btn-danger" id="eliminar">Eliminar</button></td>            
+                            <td><div align="center"><button onclick="deleteRegistro(${row1.id});" class="btn btn-danger" id="eliminar">Eliminar</button></div></td>            
                             </tr>
                         `;
                     } else {
@@ -123,7 +123,7 @@ function mostrarRegistros() {
                             <td>${row1.actividad}</td>
                             <td><div align="center">${row1.hora_entrega}</div></td>
                             <td>${row1.gasolina_cargada}</td>
-                            <td><button onclick="deleteRegistro(${row1.id});" class="btn btn-danger" id="eliminar">Eliminar</button></td>            
+                            <td><div align="center"><button onclick="deleteRegistro(${row1.id});" class="btn btn-danger" id="eliminar">Eliminar</button></div></td>            
                         </tr>
                         `;
                     }
